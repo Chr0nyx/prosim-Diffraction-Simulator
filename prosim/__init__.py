@@ -3,4 +3,3 @@ from prosim.aperture import Aperture
 from prosim.propagation import Propagation
 from prosim.lens import Lens
 from prosim.functions import *
-from prosim.prefix import *
