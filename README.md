@@ -57,7 +57,7 @@ p1 = ps.Propagation(par.Z, par.Nz)
 #analytic beam waist:
 z_r = np.pi*par.w_0**2/par.λ0
 w_of_z = par.w_0 * np.sqrt(1+par.z**2/z_r**2)
-#numeric wais:
+#numeric waist:
 w_of_z_num = np.zeros(par.Nz)
 
 #make wave profile
@@ -66,7 +66,7 @@ custom_wave = np.select([(np.exp(-(X**2+Y**2)/par.w_0**2) <= 1), True], [np.exp(
 w1.set_wp(custom_wave)
 
 
-#actual computations
+#actual computation
 Erz = p1.calculate_continuous(w1, par.λ0, par.k0)
 Irz_norm = fun.normalize_beam(Erz)
 w_of_z_num = fun.evaluate_beam_radius(Erz, w1.dx)
