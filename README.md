@@ -28,9 +28,7 @@ $$  E(x, y, z) = -\dfrac{i}{\lambda}  \iint\limits_{aperture} E(x\', y\', 0) \df
 The Fresnel-Kirchhoff integral can be evaluated more efficiently by transforming it into the Fresnel-approximation.
 It describes the diffraction (and therefore propagation after the interacting aperture) of a monochromatic em wave at a propagation distance z with respect to small angles between the propagational axis and the beam radius R.
 
-$$ E(x,y,z) \cong  -i\Gamma \iint\limits_{aperture} E(x\', y\', 0) $$ $$ \; e^{i\dfrac{k}{2z}(x\'^2+y\'^2)} \; e^{-i\dfrac{k}{z}(xx\'+y y\')}dx\'dy\ $$
-
-$$ with \; \Gamma = \dfrac{e^{ikz}e^{i\dfrac{k}{2z}(x^2+y^2)}}{\lambda z} $$
+$$ E(x,y,z) \cong  -i \dfrac{e^{ikz}e^{i\dfrac{k}{2z}(x^2+y^2)}}{\lambda z}  \iint\limits_{aperture} E(x\', y\', 0) $$ $$ \; e^{i\dfrac{k}{2z}(x\'^2+y\'^2)} \; e^{-i\dfrac{k}{z}(xx\'+y y\')}dx\'dy\ $$
 
 Using an evenly sampled symmetric grid a **two dimensional Fourier transform** of the Fresnel approximation can be used to numerically evaluate the diffraction process and calculate the resulting electrical field at the specified distance. 
 
@@ -68,7 +66,7 @@ custom_wave = np.select([(np.exp(-(X**2+Y**2)/par.w_0**2) <= 1), True], [np.exp(
 w1.set_wp(custom_wave)
 
 
-#Calcs
+#actual computations
 Erz = p1.calculate_continuous(w1, par.λ0, par.k0)
 Irz_norm = fun.normalize_beam(Erz)
 w_of_z_num = fun.evaluate_beam_radius(Erz, w1.dx)
@@ -77,17 +75,16 @@ w_of_z_num = fun.evaluate_beam_radius(Erz, w1.dx)
 fig, ax = plt.subplots(3)
 fig.tight_layout(pad=1.5)
 figManager = plt.get_current_fig_manager()
-#figManager.window.showMaximized()
-
-
 extent = [0, par.Z*1e3, 0, par.X*1e3]
-#uncomment to see curvature
+
+
+#curvature
 p0=ax[0].imshow(Erz.real**2, cmap='jet', extent=extent, aspect='auto')
 
-#uncomment to see normalized beam
+#normalized beam
 p1=ax[1].imshow(Irz_norm, cmap='jet', extent=extent, aspect='auto')
 
-#uncomment to see beam waist
+#beam waist
 ax[2].plot(par.z*1e3, w_of_z_num*1e3, 'b+', par.z*1e3, w_of_z*1e3, 'r-', linewidth='0.7')
 ax[2].grid(which='major', axis='both')
 ax[2].legend(['numeric','analytic'])
@@ -95,9 +92,6 @@ ax[2].set_xlabel('Propagation distance z in mm')
 ax[2].set_ylabel('Beam Radius w in mm')
 ax[2].set_title('Beam radius as a function of propagation distance for Gaussian beam \
                 \n \n $N_x$ =%.0f, $N_z$ =%.0f, $w_0$=%.0fmm, $\lambda_0$=%.0fmm' % (par.Nx, par.Nz, par.w_0/par.milli, par.λ0/par.milli))
-
-
-#uncomment to see colorbar next to imshow
 fig.colorbar(p0, ax=ax[0])
 fig.colorbar(p1, ax=ax[1])
 
@@ -165,4 +159,4 @@ For the computation to *most* accurately model the diffraction (or propagation) 
 ## Improvements 
 
 
-Feel free to fork, criticize or improve this project.
+Feel free to fork, criticize, rewrite, improve or alter this project.
