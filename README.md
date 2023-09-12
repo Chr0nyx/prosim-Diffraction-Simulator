@@ -23,7 +23,7 @@ $$ \Delta E(r) + k^2  E(r) = 0 $$
      
 To which the Fresnel-Kirchhoff integral (below) provides a valid solution in the context of the phenomenon of scalar diffraction.
  
-$$  E(x, y, z) = -\dfrac{i}{\lambda}  \iint\limits_{aperture} E(x\', y\', 0) $$ $$ \dfrac{e^{ikR}}{R}   \dfrac{1+cos(\gamma)}{2} dx\' dy\' $$
+$$  E(x, y, z) = -\dfrac{i}{\lambda}  \iint\limits_{aperture} E(x\', y\', 0) \dfrac{e^{ikR}}{R}   \dfrac{1+cos(\gamma)}{2} dx\' dy\' $$
     
 The Fresnel-Kirchhoff integral can be evaluated more efficiently by transforming it into the Fresnel-approximation.
 It describes the diffraction (and therefore propagation after the interacting aperture) of a monochromatic em wave at a propagation distance z with respect to small angles between the propagational axis and the beam radius R.
