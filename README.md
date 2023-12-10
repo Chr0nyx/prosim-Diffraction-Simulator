@@ -1,4 +1,4 @@
-# PROSIM - Python Propagation (and Diffraction) Simulator
+# PROSIM - Python $${\color{red}PRO}$$pagation (and Diffraction) $${\color{red}SIM}$$ulator
 ---
 Prosim is a tool for numerical simulation of electromagnetic waves using the angular spectrum method.
 ---
